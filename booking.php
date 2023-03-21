@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Guy 2021</title>
+  <title> <?php print($obj->results[$i]->title) ?></title>
 
   <!-- 
     - favicon
@@ -128,18 +128,20 @@
 
 
   <main>
-    <article>
+    
 
       <!-- 
         - #MOVIE DETAIL
       -->
 
+  
+    <article>
       <section class="movie-detail">
         <div class="container">
 
           <figure class="movie-detail-banner">
 
-            <img src="./assets/images/movie-4.png" alt="Free guy movie poster">
+            <img src="<?php print($obj->results[$i]->image->url) ?>" alt="Free guy movie poster">
 
             <button class="play-btn">
               <ion-icon name="play-circle-outline"></ion-icon>
@@ -149,69 +151,100 @@
 
           <div class="movie-detail-content">
 
-            <p class="detail-subtitle">New Episodes</p>
+            <p class="detail-subtitle">Ready to Book?</p>
 
             <h1 class="h1 detail-title">
-              Free <strong>Guy</strong>
+              <?php print($obj->results[$i]->title) ?>
             </h1>
 
             <div class="meta-wrapper">
-
-              <div class="badge-wrapper">
-                <div class="badge badge-fill">PG 13</div>
-
-                <div class="badge badge-outline">HD</div>
-              </div>
-
-              <div class="ganre-wrapper">
-                <a href="#">Comedy,</a>
-
-                <a href="#">Action,</a>
-
-                <a href="#">Adventure,</a>
-
-                <a href="#">Science Fiction</a>
-              </div>
 
               <div class="date-time">
 
                 <div>
                   <ion-icon name="calendar-outline"></ion-icon>
 
-                  <time datetime="2021">2021</time>
+                  <time datetime="2021"><?php print($obj->results[$i]->year) ?></time>
                 </div>
 
                 <div>
                   <ion-icon name="time-outline"></ion-icon>
 
-                  <time datetime="PT115M">115 min</time>
+                  <time datetime="PT115M"><?php print($obj->results[$i]->titleType) ?></time>
                 </div>
 
               </div>
 
             </div>
 
-            <p class="storyline">
-              A bank teller called Guy realizes he is a background character in an open world video game called Free
-              City that will
-              soon go offline.
-            </p>
-
             <div class="details-actions">
 
-              <button class="btn btn-primary">
+              <button id="myBtn" class="btn btn-primary">
                 <ion-icon name="cart-outline"></ion-icon>
 
                 <span>Book it</span>
               </button>
+      
 
+            </div>
+
+          </div>
+
+          <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+            <div id="booking">
+								<div class="col-md-10 col-sm-10 col-xs-12">
+									<p>Please complete the booking form below.</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-8 col-sm-8 col-xs-12">
+									<!-- form -->
+									<form method="POST" id="bookingForm" name="bookingform" action="movie_bookings.php">
+										<fieldset>
+											<label class="label1"><?php print($obj->results[$i]->title) ?></label>
+											<div style="color:red;" id="name2" name=id>
+												<div>
+													</br>
+												</div>
+												</br></br>
+											</div></br></br>
+											<!-- We hide this with CSS, that's why it has an ID. -->
+											<div style="display:none;" id="user">
+												<label for="username">Username</label>
+												<input type="text" name="username">
+											</div>
+											<div>
+												<label class="label1" for="contactEmail">Name<span class="required">*</span></label>
+												<input type="text" onkeyup="this.value=this.value.replace(/[^A-Za-z.' ']/g,'')" placeholder="Name" size="35" id="namebook" name="name" required>
+											</div>
+											<div>
+												<label class="label1" for="contactEmail">Date :<span class="required">*</span></label>
+												<input type="datetime-local" size="35" min="2021-10-01" max="2021-10-31" id="bookingtime" name="bookingtime" required>
+											</div>
+											<div>
+												<label class="label1" for="contactEmail">Email<span class="required">*</span></label>
+												<input type="email" placeholder="Email" id="email" name="email" style="color:black;" required>
+											</div>
+											<div>
+                        <button class="btn btn-primary" value="Submit" onclick="confirm()">
+                          <ion-icon name="cart-outline"></ion-icon>
+                          <span>Book it</span>
+                        </button>
+											</div>
+										</fieldset>
+									</form>
+								</div>
+							</div>
+						</div>
             </div>
 
           </div>
 
         </div>
       </section>
-
 
 
 
