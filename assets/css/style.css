@@ -84,8 +84,12 @@ img {
 
 input {
   font: inherit;
-  width: 100%;
-  border: none;
+  width: 60%;
+  margin-left: 20%;
+  margin-right: 20%;
+  border-radius: 20px;
+  text-align: center;
+
 }
 
 select,
@@ -161,7 +165,7 @@ body.active { overflow: hidden; }
   color: var(--raisin-black);
 }
 
-.badge-outline { border-color: var(--white); }
+.badge-outline { border-color: var(--white); border-radius: 20px;}
 
 /**
  * MOVIE META
@@ -296,6 +300,14 @@ body.active { overflow: hidden; }
 }
 
 .movie-card .card-title:is(:hover, :focus) { color: var(--citrine); }
+
+.movie-card .card-price {
+  color: var(--white);
+  font-size: var(--fs-7);
+  transition: var(--transition-1);
+}
+
+.movie-card .card-price:is(:hover, :focus) { color: var(--citrine); }
 
 .movie-card .title-wrapper time {
   color: var(--citrine);
@@ -949,6 +961,22 @@ body.active { overflow: hidden; }
   object-fit: cover;
 }
 
+.movie-detail-banner2 {
+  position: relative;
+  background: var(--gunmetal-1);
+  max-width: 300px;
+  margin-inline: auto;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 50px;
+}
+
+.movie-detail-banner2 img {
+  width: 80%;
+  height: 80%;
+  
+}
+
 .play-btn {
   position: absolute;
   inset: 0;
@@ -1566,7 +1594,7 @@ body.active { overflow: hidden; }
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
+  position:fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;
   top: 0;
@@ -1584,13 +1612,14 @@ body.active { overflow: hidden; }
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 2px solid #f0ec11;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 30%; /* Could be more or less, depending on screen size */
   border-radius: 30px;
+  text-align:center;
 }
 
 /* The Close Button */
 .close {
-  color: #aaa;
+  color: #f80202;
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -1601,4 +1630,8 @@ body.active { overflow: hidden; }
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.form {
+  border-radius: 10px;
 }

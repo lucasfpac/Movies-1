@@ -215,7 +215,7 @@
                 CURLOPT_CUSTOMREQUEST => "GET",
                 CURLOPT_HTTPHEADER => [
                     "X-RapidAPI-Host: online-movie-database.p.rapidapi.com",
-                    "X-RapidAPI-Key: eaed54e0d5mshcaf2025e300f537p1b4cc3jsn1e893bc3d684"
+                    "X-RapidAPI-Key: 1f9e89dc3emsh9a6041039db2b66p1824a5jsn3e3710ea63d1"
                 ],
 
                 
@@ -246,123 +246,45 @@
                 ?>
 
             <li>
+            <form method="post" action="booking.php">
               <div class="movie-card">
 
-                <a href="./booking.php">
+                 
                   <figure class="card-banner">
-                    <img src="<?php print($obj->results[$i]->image->url) ?>">
+                    <img id="moviename" value ="bosta" src="<?php print($obj->results[$i]->image->url) ?>">
                   </figure>
                 </a>
 
                 <div class="title-wrapper">
-                  <a href="./booking.php">
                     <h3 class="card-title"><?php print($obj->results[$i]->title) ?></h3>
-                  </a>
-
-                  <time datetime="2022"><?php print($obj->results[$i]->year) ?></time>
+                    <time datetime="2022"><?php print($obj->results[$i]->year) ?></time>
                 </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline"><?php print($obj->results[$i]->titleType) ?></div>
-
+                <div class="title-wrapper">
+                    <div class="badge badge-outline">Dublin</div>
+                    <h3 class="card-price">€ 10.99</h3>
+                  </div>
+                <div class="card-meta">           
+                  <input type="hidden" id="movieTitle" name="movieTitle" value="<?php print($obj->results[$i]->title) ?>" /> 
+                  <input type="hidden" id="movieImg" name="movieImg" value="<?php print($obj->results[$i]->image->url) ?>" />
+                  <input type="hidden" id="movieYear" name="movieYear" value="<?php print($obj->results[$i]->year) ?>" />
+                  <!-- <button id="moviename" name="moviename" type="submit" value="<?php print($obj->results[$i]->image->url) ?>">Clique Aqui </button> -->
+                  <button id="moviename" name="moviename" class="btn btn-primary" value="Submit" type="submit" value="<?php print($obj->results[$i]->image->url) ?>">
+                      <ion-icon name="cart-outline"></ion-icon>
+                      <span>Book it</span>
+                    </button>
+                 
+                 
 
                 </div>
 
               </div>
+              </form>
             </li>
             <?php } ?>
         </div>
       </section>
 
-      <!-- 
-        - #TV SERIES
-      -->
-
-      <section class="tv-series" id="tvshow">
-        <div class="container">
-
-          <p class="section-subtitle">Best TV Series</p>
-
-          <h2 class="h2 section-title">World Best TV Series</h2>
-
-          <ul class="movies-list">
-
-          <?php
-
-              $curl = curl_init();
-
-              curl_setopt_array($curl, [
-                CURLOPT_URL => "https://online-movie-database.p.rapidapi.com/title/v2/find?title=a&titleType=tvSeries&limit=20&sortArg=moviemeter%2Casc&genre=Horror",
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_ENCODING => "",
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 30,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "GET",
-                CURLOPT_HTTPHEADER => [
-                  "X-RapidAPI-Host: online-movie-database.p.rapidapi.com",
-                  "X-RapidAPI-Key: 555fe5fceamshabf8656454628c2p1603f3jsna6e4f0869154"
-                ],
-              ]);
-
-              $response = curl_exec($curl);
-              $err = curl_error($curl);
-
-              curl_close($curl);
-
-              if ($err) {
-                echo "cURL Error #:" . $err;
-              } else {
-                
-              }
-
-               $obj = json_decode($response);
-
-
-            $total = count((array) $obj->results);
-            $total = $total - 1;
-
-            $i = 0;
-            while ($i < $total){
-
-                $i++;
-                ?>
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./booking.php">
-                  <figure class="card-banner">
-                    <img src="<?php print($obj->results[$i]->image->url) ?>">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./booking.php">
-                    <h3 class="card-title"><?php print($obj->results[$i]->title) ?></h3>
-                  </a>
-
-                  <time datetime="2022"><?php print($obj->results[$i]->year) ?></time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline"><?php print($obj->results[$i]->titleType) ?></div>
-
-
-                </div>
-
-              </div>
-            </li>
-
-            <?php } ?>
-
-        </div>
-      </section>
-
-    </article>
-  </main>
-
+      
 
 
 

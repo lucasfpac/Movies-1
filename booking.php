@@ -1,3 +1,12 @@
+<?php
+$var = ""; 
+if(isset($_POST['moviename'])) 
+     $movieTitle = $_POST['movieTitle'];
+     $movieImg = $_POST['movieImg']; 
+     $movieYear = $_POST['movieYear']; 
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +14,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> <?php print($obj->results[$i]->title) ?></title>
+  <title> <?php echo $movieTitle ?></title>
 
   <!-- 
     - favicon
@@ -36,7 +45,7 @@
 
       <div class="overlay" data-overlay></div>
 
-      <a href="./index.html" class="logo">
+      <a href="./index.php" class="logo">
         <img src="https://www.kindpng.com/picc/m/247-2472932_lucas-logo-hd-png-download.png" alt="Filmlane logo">
       </a>
 
@@ -54,7 +63,7 @@
 
         <div class="navbar-top">
 
-          <a href="./index.html" class="logo">
+          <a href="./index.php" class="logo">
             <img src="https://www.kindpng.com/picc/m/247-2472932_lucas-logo-hd-png-download.png" alt="Filmlane logo">
           </a>
 
@@ -141,7 +150,7 @@
 
           <figure class="movie-detail-banner">
 
-            <img src="<?php print($obj->results[$i]->image->url) ?>" alt="Free guy movie poster">
+            <img src="<?php echo $movieImg ?>" alt="<?php echo $movieTitle; ?>">
 
             <button class="play-btn">
               <ion-icon name="play-circle-outline"></ion-icon>
@@ -154,7 +163,7 @@
             <p class="detail-subtitle">Ready to Book?</p>
 
             <h1 class="h1 detail-title">
-              <?php print($obj->results[$i]->title) ?>
+              <?php echo $movieTitle; ?>
             </h1>
 
             <div class="meta-wrapper">
@@ -164,14 +173,20 @@
                 <div>
                   <ion-icon name="calendar-outline"></ion-icon>
 
-                  <time datetime="2021"><?php print($obj->results[$i]->year) ?></time>
+                  <time datetime="2021"><?php echo $movieYear ?></time>
                 </div>
 
                 <div>
                   <ion-icon name="time-outline"></ion-icon>
-
-                  <time datetime="PT115M"><?php print($obj->results[$i]->titleType) ?></time>
+                  <a>23/03/2023 19:00</a>
+                  
                 </div>
+                <div class="title-wrapper">
+                    <div class="badge badge-outline">Dublin</div>
+                  </div>
+                  <div>
+                    <h3 class="card-price">€ 10.99</h3>
+                  </div>
 
               </div>
 
@@ -191,44 +206,35 @@
           </div>
 
           <div id="myModal" class="modal">
-
+          
             <!-- Modal content -->
             <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <div id="booking">
-								<div class="col-md-10 col-sm-10 col-xs-12">
+								<div>
 									<p>Please complete the booking form below.</p>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-8 col-sm-8 col-xs-12">
 									<!-- form -->
-									<form method="POST" id="bookingForm" name="bookingform" action="movie_bookings.php">
-										<fieldset>
-											<label class="label1"><?php print($obj->results[$i]->title) ?></label>
-											<div style="color:red;" id="name2" name=id>
-												<div>
-													</br>
-												</div>
-												</br></br>
-											</div></br></br>
-											<!-- We hide this with CSS, that's why it has an ID. -->
+									<form style="text-align: center;" method="POST" id="bookingForm" name="bookingform" action="movie_bookings.php">
+										<fieldset class="form">
+                      <h2>Booking Detail:</h2>
 											<div style="display:none;" id="user">
 												<label for="username">Username</label>
 												<input type="text" name="username">
 											</div>
 											<div>
-												<label class="label1" for="contactEmail">Name<span class="required">*</span></label>
+												<label class="label1" for="contactEmail"><span class="required"></span></label>
 												<input type="text" onkeyup="this.value=this.value.replace(/[^A-Za-z.' ']/g,'')" placeholder="Name" size="35" id="namebook" name="name" required>
 											</div>
+                      <br>
 											<div>
-												<label class="label1" for="contactEmail">Date :<span class="required">*</span></label>
-												<input type="datetime-local" size="35" min="2021-10-01" max="2021-10-31" id="bookingtime" name="bookingtime" required>
-											</div>
-											<div>
-												<label class="label1" for="contactEmail">Email<span class="required">*</span></label>
+												<label class="label1" for="contactEmail"><span class="required"></span></label>
 												<input type="email" placeholder="Email" id="email" name="email" style="color:black;" required>
 											</div>
-											<div>
+											<div style="align-items: center;">
                         <button class="btn btn-primary" value="Submit" onclick="confirm()">
                           <ion-icon name="cart-outline"></ion-icon>
                           <span>Book it</span>
@@ -236,6 +242,7 @@
 											</div>
 										</fieldset>
 									</form>
+                  
 								</div>
 							</div>
 						</div>
@@ -262,14 +269,14 @@
 
     <div class="footer-brand-wrapper">
 
-      <a href="./index.html" class="logo">
+      <a href="./index.php" class="logo">
         <img src="https://www.kindpng.com/picc/m/247-2472932_lucas-logo-hd-png-download.png" alt="Filmlane logo">
       </a>
 
       <ul class="footer-list">
 
         <li>
-          <a href="./index.html" class="footer-link">Home</a>
+          <a href="./index.php" class="footer-link">Home</a>
         </li>
 
         <li>

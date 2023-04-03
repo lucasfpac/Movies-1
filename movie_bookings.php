@@ -1,3 +1,5 @@
+
+
 <?php
 	$errors='';
 
@@ -14,17 +16,20 @@
 		//sending email
 		$to_email = $email;
 		$subject = "Confirmed booking to $movie";
-		$body = "Hi $name This is to confirme $movie is booked at $bookingtime";
-		$headers = "From: movie magic";
+		$body = "Hi $name, this e-mail is to confirm that $movie is booked to Dublin 23/03/2023 at 19:00, <br> Enjoy your movie.";
+		$headers = "From: LucasFilm";
 		
 		if (mail($to_email, $subject, $body, $headers)){
-			echo nl2br("<p style='font-size:2vw;'>Email sucessfully sent to $to_email</p>");
-		} else {
+			echo nl2br('<script>alert("Email sucessfully sent.")</script>');
+			echo nl2br("<p style='font-size:2vw;'>Returning to main page in 2 seconds.</p>");
+			$url1=$_SERVER['REQUEST_URI'];
+    		header("Refresh: 3; URL=http://localhost/Movies/index.php");
+			} else {
 			echo "Email sending failed";
 		}
 	}
 		
-	echo '<body style="background-color:#e0e0e0;">';
+	echo '<body style="background: url("../images/hero-bg.jpg") no-repeat;">';
 
 	if(empty($errors)){
 
@@ -44,7 +49,7 @@
 		VALUES ('$name', '$movie', '$bookingtime', '$email')";
 		
 		if($conn->query($sql) === TRUE){
-			echo nl2br("<p style='font-size:2vw;'>New record created successfully</p>");
+			// echo nl2br("<p style='font-size:2vw;'>New record created successfully</p>");
 		}else {
 			echo "Error: " . $sql . "<br>" . $conn->error; 
 		}
@@ -55,3 +60,4 @@
 		$conn->close();
 	}
 ?>
+

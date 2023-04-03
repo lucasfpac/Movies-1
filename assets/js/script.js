@@ -21,6 +21,21 @@ for (let i = 0; i < navElemArr.length; i++) {
 
 }
 
+//Creating a "Alert" with all informations about book
+function confirm(){
+					
+  var emailname = document.getElementById("email").value;
+  var bookname = document.getElementById("namebook").value;
+  if (document.getElementById("email").value == "" || document.getElementById("namebook").value == "" ) {
+    alert("Hi, complete all the form, please");
+  }else{
+    alert(desc[choice]+" is booked for " + bookname + " and email address: " + emailname);
+    document.getElementById('booking').style.display = 'block';
+    swapImage();
+    changeSource(url);
+  }
+  
+}
 
 
 /**
@@ -78,3 +93,6 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+$(function () {
+  $('#modal').modal('toggle');
+});
